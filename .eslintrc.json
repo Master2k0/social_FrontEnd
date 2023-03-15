@@ -39,14 +39,9 @@
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "@typescript-eslint/no-floating-promises": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true,
-        "optionalDependencies": false,
-        "peerDependencies": false
-      }
-    ]
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "react/jsx-props-no-spreading": "off",
   },
   "settings": {
     "import/parsers": {
