@@ -1,0 +1,11 @@
+{
+  "createStyle": {
+    "prefix": ["!createStyle", "~createStyle"],
+    "body": [
+      "export const ${1:string} = styled(${2:string})(({ theme }) => ({",
+      "  ${3:string}",
+      "})) as typeof ${2:string};"
+    ],
+    "description": "Create specific style for component"
+  }
+}

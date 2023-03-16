@@ -42,6 +42,7 @@
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   },
   "settings": {
     "import/parsers": {

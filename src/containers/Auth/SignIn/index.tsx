@@ -1,16 +1,21 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Input,
-  TextField,
-} from "@mui/material";
-import { useForm } from "react-hook-form";
-// import { useStyles } from "./styles";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container, Title } from "./styles";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import GoogleIcon from "@mui/icons-material/Google";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { Checkbox, IconButton, Typography } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import { Stack, useTheme } from "@mui/system";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+
+// import { useStyles } from "./styles";
+import { Button } from "@/components/Button";
+import { Container, ContainerForm, Title } from "@/components/FormAuth";
+import { InputText } from "@/components/InputText";
+import { ColorDark, ColorLight } from "@/types/Enum/color";
+
+import { ControlCheckbox, RowForgot } from "./styles";
+
 interface IFormInput {
   userName: string;
   password: string;
@@ -25,39 +30,82 @@ function SignIn() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   });
-  // const classes = useStyles();
   const onSubmit = (value: any) => {
-    console.log(value);
+    // console.log(value);
   };
+  const theme = useTheme();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Container spacing={2}>
+      <Container>
         <Title>Account Login</Title>
-        <TextField
-          {...register("userName", { required: true })}
-          label="User Name"
-          variant="outlined"
-          error={!!errors.userName}
-          helperText={errors.userName?.message}
-        />
-        <TextField
-          {...register("password", { required: true })}
-          label="Pass Word"
-          variant="outlined"
-          error={!!errors.password}
-          helperText={errors.password?.message}
-        />
-        <Box>
-          <FormControlLabel control={<Checkbox />} label="Remember Me" />
-        </Box>
-        <Button variant="outlined" type="submit">
-          Sign In
-        </Button>
+        <ContainerForm spacing={7}>
+          <InputText
+            {...register("userName", { required: true })}
+            label="Username or Email"
+            variant="outlined"
+            error={!!errors.userName}
+            helperText={errors.userName?.message}
+          />
+          <InputText
+            {...register("password", { required: true })}
+            label="Password"
+            variant="outlined"
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+          <RowForgot>
+            <ControlCheckbox control={<Checkbox />} label="Remember Me" />
+            <Button variant="text" type="button" sx={{ fontSize: 14 }}>
+              Forgot Password!
+            </Button>
+          </RowForgot>
+          <Button
+            sx={{
+              color: ColorLight.WHITE,
+            }}
+            variant="contained"
+            type="submit"
+          >
+            Sign In
+          </Button>
+        </ContainerForm>
+        <Divider sx={{ marginTop: "40px" }}>
+          <Typography
+            fontWeight={700}
+            fontSize={14}
+            sx={{
+              color:
+                theme.palette.mode === "dark"
+                  ? ColorDark.TEXT
+                  : ColorLight.TEXT,
+            }}
+          >
+            Login with your Social Account
+          </Typography>
+        </Divider>
+        <Stack
+          direction="row"
+          spacing={10}
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            marginTop: "40px",
+          }}
+        >
+          <IconButton color="primary">
+            <TwitterIcon />
+          </IconButton>
+          <IconButton color="primary">
+            <GoogleIcon />
+          </IconButton>
+          <IconButton color="primary">
+            <GitHubIcon />
+          </IconButton>
+        </Stack>
       </Container>
     </form>
   );

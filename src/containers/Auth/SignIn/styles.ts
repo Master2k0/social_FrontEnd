@@ -1,27 +1,18 @@
-import { createStyles, makeStyles } from "@mui/styles";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
-import BORDER_RADIUS from "@/types/Enum/borderRadius";
+import { Box, FormControlLabel } from "@mui/material";
 import { styled } from "@mui/system";
-import { Box, Stack, TextField, Typography } from "@mui/material";
 
-export const Container = styled(Stack)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#303030" : "#fff",
-  boxShadow: (theme.shadows as Array<string>)[10],
-  width: 300,
-  borderRadius: BORDER_RADIUS.MD,
-  padding: theme.spacing(4),
-})) as typeof Stack;
+import { ColorDark, ColorLight } from "@/types/Enum/color";
 
-export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: 36,
-  textAlign: "center",
-  fontWeight: 700,
-})) as typeof Typography;
-
-export const InputText = styled(TextField)(({ theme }) => ({
-  borderRadius: BORDER_RADIUS.MD,
-  borderColor: theme.palette.mode === "dark" ? "#fff" : "#dedeea",
-  "&:hover": {
-    borderColor: theme.palette.mode === "dark" ? "#fff" : "#dedeea",
+export const ControlCheckbox = styled(FormControlLabel)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? ColorDark.TEXT : ColorLight.TEXT,
+  alignItems: "center",
+  "& .MuiFormControlLabel-label": {
+    fontSize: 14,
   },
-}));
+})) as typeof FormControlLabel;
+
+export const RowForgot = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+})) as typeof Box;

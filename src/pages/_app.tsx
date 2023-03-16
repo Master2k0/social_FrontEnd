@@ -1,10 +1,10 @@
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Rajdhani } from "@next/font/google";
 import type { AppProps } from "next/app";
 import { createContext, useMemo, useState } from "react";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGetLocalStorage } from "@/hooks/useGetLocalStorage";
-import { Rajdhani } from "@next/font/google";
 import customTheme from "@/constants/theme";
+import { useGetLocalStorage } from "@/hooks/useGetLocalStorage";
 
 export const ColorModeContext = createContext({
   toggleColorMode: (value: string) => {},
