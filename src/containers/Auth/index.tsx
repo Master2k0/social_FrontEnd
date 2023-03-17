@@ -1,15 +1,16 @@
-import { Box } from "@mui/material";
+import Layout from "@/containers/Auth/Layout";
 
-import SwitchTheme from "@/components/SwitchTheme";
-import SignIn from "@/containers/Auth/SignIn";
-import SignUp from "@/containers/Auth/SignUp";
+import { Background, BackgroundOverlay, Container } from "./styles";
 
 function AuthContainer() {
   return (
-    <Box>
-      <SignUp />
-      <SignIn />
-    </Box>
+    <Background>
+      <BackgroundOverlay>
+        <Container>
+          <Layout />
+        </Container>
+      </BackgroundOverlay>
+    </Background>
   );
 }
 

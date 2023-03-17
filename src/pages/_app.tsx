@@ -1,7 +1,8 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Rajdhani } from "@next/font/google";
+import "./styles.css";
+
+import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
-import { createContext, useMemo, useState } from "react";
+import { createContext, useMemo } from "react";
 
 import customTheme from "@/constants/theme";
 import { useGetLocalStorage } from "@/hooks/useGetLocalStorage";

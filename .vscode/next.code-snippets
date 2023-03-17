@@ -2,6 +2,7 @@
   "createStyle": {
     "prefix": ["!createStyle", "~createStyle"],
     "body": [
+      "import { styled } from '@mui/system';",
       "export const ${1:string} = styled(${2:string})(({ theme }) => ({",
       "  ${3:string}",
       "})) as typeof ${2:string};"

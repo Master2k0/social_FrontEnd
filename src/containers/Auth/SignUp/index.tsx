@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { IconButton, InputAdornment, Link } from "@mui/material";
+import { Box, IconButton, InputAdornment, Link } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -56,101 +56,106 @@ function SignUp() {
     event.preventDefault();
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Container>
-        <Title>Create your Account!</Title>
-        <ContainerForm spacing={7}>
-          <InputText
-            {...register("firstName", { required: true })}
-            label="First Name"
-            variant="outlined"
-            error={!!errors.firstName}
-            helperText={errors.firstName?.message}
-          />
-          <InputText
-            {...register("lastName", { required: true })}
-            label="Last Name"
-            variant="outlined"
-            error={!!errors.lastName}
-            helperText={errors.lastName?.message}
-          />
-          <InputText
-            {...register("email", { required: true })}
-            label="Your Email"
-            variant="outlined"
-            error={!!errors.email}
-            helperText={errors.email?.message}
-          />
-          <InputText
-            {...register("userName", { required: true })}
-            label="Username"
-            variant="outlined"
-            error={!!errors.userName}
-            helperText={errors.userName?.message}
-          />
-          <InputText
-            {...register("password", { required: true })}
-            label="Password"
-            variant="outlined"
-            error={!!errors.password}
-            helperText={errors.password?.message}
-            type={showPassword ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {!showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <InputText
-            {...register("confirmPassword", { required: true })}
-            label="Confirm Password"
-            variant="outlined"
-            error={!!errors.confirmPassword}
-            helperText={errors.confirmPassword?.message}
-            type={showPassword ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {!showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
+    <Box>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Container>
+          <Title>Create your Account!</Title>
+          <ContainerForm spacing={7}>
+            <InputText
+              {...register("firstName", { required: true })}
+              label="First Name"
+              variant="outlined"
+              error={!!errors.firstName}
+              helperText={errors.firstName?.message}
+              inputRef={(input) => input?.focus()}
+              autoComplete="off"
+            />
+            <InputText
+              {...register("lastName", { required: true })}
+              label="Last Name"
+              variant="outlined"
+              error={!!errors.lastName}
+              helperText={errors.lastName?.message}
+            />
+            <InputText
+              {...register("email", { required: true })}
+              label="Your Email"
+              variant="outlined"
+              error={!!errors.email}
+              helperText={errors.email?.message}
+            />
+            <InputText
+              {...register("userName", { required: true })}
+              label="Username"
+              variant="outlined"
+              error={!!errors.userName}
+              helperText={errors.userName?.message}
+            />
+            <InputText
+              {...register("password", { required: true })}
+              label="Password"
+              variant="outlined"
+              error={!!errors.password}
+              helperText={errors.password?.message}
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {!showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <InputText
+              {...register("confirmPassword", { required: true })}
+              label="Confirm Password"
+              variant="outlined"
+              error={!!errors.confirmPassword}
+              helperText={errors.confirmPassword?.message}
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {!showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
 
-          <Button
-            sx={{
-              color: ColorLight.WHITE,
-            }}
-            variant="contained"
-            type="submit"
-          >
-            Sign In
-          </Button>
-          <Text>
-            You`&apos;`ll receive a confirmation email in your inbox with a link
-            to activate your account. If you have any problems,{" "}
-            <Link underline="none" href="google.com">
-              contact us
-            </Link>
-            !
-          </Text>
-        </ContainerForm>
-      </Container>
-    </form>
+            <Button
+              sx={{
+                color: ColorLight.WHITE,
+              }}
+              variant="contained"
+              type="submit"
+              disableRipple
+            >
+              Sign Up
+            </Button>
+            <Text>
+              You`&apos;`ll receive a confirmation email in your inbox with a
+              link to activate your account. If you have any problems,{" "}
+              <Link underline="none" href="google.com">
+                contact us
+              </Link>
+              !
+            </Text>
+          </ContainerForm>
+        </Container>
+      </form>
+    </Box>
   );
 }
 

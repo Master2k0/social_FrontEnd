@@ -19,6 +19,9 @@ export const Container = styled(Stack)(({ theme }) => ({
   width: 350,
   borderRadius: BORDER_RADIUS.LG,
   padding: theme.spacing(16),
+  [theme.breakpoints.down(500)]: {
+    padding: theme.spacing(10),
+  },
 })) as typeof Stack;
 
 export const ContainerForm = styled(Stack)(({ theme }) => ({})) as typeof Stack;
