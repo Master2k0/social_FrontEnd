@@ -72,7 +72,7 @@ export default function Layout() {
         </SignInContainer>
         <SignUpContainer isShow={type}>
           <Box display={type === "sign-up" ? "block" : "none"}>
-            <SignUp />
+            <SignUp setType={setType} />
           </Box>
         </SignUpContainer>
       </Box>

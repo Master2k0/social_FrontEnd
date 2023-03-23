@@ -13,6 +13,6 @@ export const ControlCheckbox = styled(FormControlLabel)(({ theme }) => ({
 
 export const RowForgot = styled(Box)(({ theme }) => ({
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
 })) as typeof Box;

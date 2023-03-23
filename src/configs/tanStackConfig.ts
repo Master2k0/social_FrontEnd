@@ -21,7 +21,7 @@ export function onError(error: IResponseError) {
   });
 }
 
-export function onSuccess<T, I>(data: IResponse<T>) {
+export function onSuccess<T>(data: IResponse<T>) {
   enqueueSnackbar(data.message, {
     variant: "success",
   });
