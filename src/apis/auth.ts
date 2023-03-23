@@ -73,4 +73,11 @@ export const authApi = {
     );
     return response.data;
   },
+
+  logout: async () => {
+    const response = await axiosClient.get<IResponse<any>>(
+      `${END_POINT}/logout`
+    );
+    return response.data;
+  },
 };
