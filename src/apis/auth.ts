@@ -14,4 +14,29 @@ export const authApi = {
     );
     return response.data;
   },
+  requestForgotPassword: async (email: string) => {
+    const response = await axiosClient.post<IResponse<any>>(
+      `${END_POINT}/forgot-password`,
+      {
+        email,
+      }
+    );
+    return response.data;
+  },
+
+  resetPassword: async (
+    token: string,
+    password: string,
+    confirmPassword: string
+  ) => {
+    const response = await axiosClient.post<IResponse<any>>(
+      `${END_POINT}/reset-password`,
+      {
+        token,
+        password,
+        confirmPassword,
+      }
+    );
+    return response.data;
+  },
 };

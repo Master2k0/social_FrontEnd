@@ -2,13 +2,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { IconButton, InputAdornment, useTheme } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import { Button } from "@/components/Button";
+import { authApi } from "@/apis/auth";
 import { Container, ContainerForm, Title } from "@/components/FormAuth";
 import { InputText } from "@/components/InputText";
+import { LoadingButtonCustom } from "@/components/LoadingButton";
+import { onError, onSuccess } from "@/configs/tanStackConfig";
 import { ColorLight } from "@/types/Enum/color";
 
 import { Layout } from "./styles";
@@ -26,13 +30,12 @@ const schema = yup.object({
     .oneOf([yup.ref("newPassword"), ""], "Passwords must match"),
 });
 
-const onSubmit = (value: any) => {
-  console.log(value);
-};
-
 export default function ResetPasswordContainer() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const theme = useTheme();
+  const router = useRouter();
+  const { token } = router.query;
+
   const {
     register,
     handleSubmit,
@@ -48,6 +51,21 @@ export default function ResetPasswordContainer() {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
+  };
+
+  const submit = useMutation({
+    mutationFn: async (value: IFormInput) =>
+      await authApi.resetPassword(
+        (token as string) ?? "",
+        value.newPassword,
+        value.confirmPassword
+      ),
+    onError,
+    onSuccess,
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = async (value) => {
+    await submit.mutateAsync(value);
   };
   return (
     <Layout>
@@ -97,17 +115,17 @@ export default function ResetPasswordContainer() {
                 ),
               }}
             />
-
-            <Button
+            <LoadingButtonCustom
               sx={{
                 color: ColorLight.WHITE,
               }}
               variant="contained"
               type="submit"
               disableRipple
+              loading={submit.isLoading}
             >
               Submit
-            </Button>
+            </LoadingButtonCustom>
           </ContainerForm>
         </Container>
       </form>

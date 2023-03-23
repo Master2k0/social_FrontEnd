@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Readex_Pro } from "@next/font/google";
 
-const font = Readex_Pro({
+export const font = Readex_Pro({
   weight: ["200", "300", "400", "500", "600", "700"],
   fallback: ["system-ui", "arial"],
   subsets: ["latin", "latin-ext", "vietnamese"],
