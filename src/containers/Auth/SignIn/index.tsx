@@ -19,6 +19,7 @@ import { Button } from "@/components/Button";
 import { Container, ContainerForm, Title } from "@/components/FormAuth";
 import { InputText } from "@/components/InputText";
 import { onError } from "@/configs/tanStackConfig";
+import useLogin from "@/hooks/useLogin";
 import { PRIVATE_ROUTE, PUBLIC_ROUTE } from "@/router";
 import { ColorDark, ColorLight } from "@/types/Enum/color";
 import { setCookiesUser } from "@/utils/auth";
@@ -46,6 +47,7 @@ function SignIn() {
   const router = useRouter();
   const theme = useTheme();
   const route = useRouter();
+  const { redirectGithub } = useLogin();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const submit = useMutation({
     mutationFn: async (data: IFormInput) =>
@@ -159,7 +161,7 @@ function SignIn() {
             <IconButton color="primary">
               <GoogleIcon />
             </IconButton>
-            <IconButton color="primary">
+            <IconButton onClick={redirectGithub} color="primary">
               <GitHubIcon />
             </IconButton>
           </Stack>

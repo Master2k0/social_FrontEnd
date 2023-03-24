@@ -75,8 +75,18 @@ export const authApi = {
   },
 
   logout: async () => {
-    const response = await axiosClient.get<IResponse<any>>(
+    const response = await axiosClient.get<IResponse<unknown>>(
       `${END_POINT}/logout`
+    );
+    return response.data;
+  },
+
+  signInWithGithub: async (code: string) => {
+    const response = await axiosClient.post<IResponse<ILoginResponse>>(
+      `${END_POINT}/github`,
+      {
+        code,
+      }
     );
     return response.data;
   },
