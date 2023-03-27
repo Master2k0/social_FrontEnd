@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Box, IconButton, InputAdornment, Typography } from "@mui/material";
@@ -20,6 +19,7 @@ import { Container, ContainerForm, Title } from "@/components/FormAuth";
 import { InputText } from "@/components/InputText";
 import { onError } from "@/configs/tanStackConfig";
 import useLogin from "@/hooks/useLogin";
+import DiscordIcon from "@/icons/Discord";
 import { PRIVATE_ROUTE, PUBLIC_ROUTE } from "@/router";
 import { ColorDark, ColorLight } from "@/types/Enum/color";
 import { setCookiesUser } from "@/utils/auth";
@@ -47,7 +47,7 @@ function SignIn() {
   const router = useRouter();
   const theme = useTheme();
   const route = useRouter();
-  const { redirectGithub } = useLogin();
+  const { redirectGithub, googleLogin, discordLogin } = useLogin();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const submit = useMutation({
     mutationFn: async (data: IFormInput) =>
@@ -155,12 +155,24 @@ function SignIn() {
               marginTop: "40px",
             }}
           >
-            <IconButton color="primary">
-              <TwitterIcon />
+            <IconButton
+              color="primary"
+              onClick={() => {
+                discordLogin();
+              }}
+            >
+              <DiscordIcon />
             </IconButton>
-            <IconButton color="primary">
+
+            <IconButton
+              color="primary"
+              onClick={() => {
+                googleLogin();
+              }}
+            >
               <GoogleIcon />
             </IconButton>
+
             <IconButton onClick={redirectGithub} color="primary">
               <GitHubIcon />
             </IconButton>

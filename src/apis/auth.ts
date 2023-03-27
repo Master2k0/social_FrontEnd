@@ -90,4 +90,24 @@ export const authApi = {
     );
     return response.data;
   },
+
+  signInWithGoogle: async (code: string) => {
+    const response = await axiosClient.post<IResponse<ILoginResponse>>(
+      `${END_POINT}/google`,
+      {
+        code,
+      }
+    );
+    return response.data;
+  },
+
+  signInWithDiscord: async (code: string) => {
+    const response = await axiosClient.post<IResponse<ILoginResponse>>(
+      `${END_POINT}/discord`,
+      {
+        code,
+      }
+    );
+    return response.data;
+  },
 };

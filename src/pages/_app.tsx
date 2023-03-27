@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import { ThemeProvider } from "@mui/material/styles";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
@@ -31,25 +32,29 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const theme = useMemo(customTheme(mode), [mode]);
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <SnackbarProvider
-            maxSnack={5}
-            autoHideDuration={2000}
-            Components={{
-              success: ToastCustom,
-              error: ToastCustom,
-              warning: ToastCustom,
-              info: ToastCustom,
-              default: ToastCustom,
-            }}
-          >
-            <Component {...pageProps} />
-          </SnackbarProvider>
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </QueryClientProvider>
+    <GoogleOAuthProvider
+      clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}
+    >
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <SnackbarProvider
+              maxSnack={5}
+              autoHideDuration={2000}
+              Components={{
+                success: ToastCustom,
+                error: ToastCustom,
+                warning: ToastCustom,
+                info: ToastCustom,
+                default: ToastCustom,
+              }}
+            >
+              <Component {...pageProps} />
+            </SnackbarProvider>
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </QueryClientProvider>
+    </GoogleOAuthProvider>
   );
 }
