@@ -19,10 +19,12 @@ export const setCookiesUser = (data: ILoginResponse) => {
   cookies.set("accessToken", accessToken, {
     path: "/",
     expires: new Date(expAToken * 1000),
+    secure: true,
   });
   cookies.set("refreshToken", refreshToken, {
     path: "/",
     expires: new Date(expRToken * 1000),
+    secure: true,
   });
 };
 
@@ -31,26 +33,17 @@ export const removeCookiesUser = () => {
   cookies.remove("refreshToken", { path: "/" });
 };
 
-export const checkIsAuth = () => {
-  const { accessToken } = getCookiesUser();
-  if (!accessToken) {
-    return requestRefreshToken();
-  }
-  return true;
-};
-
-export const requestRefreshToken = () => {
+export const requestRefreshToken = async () => {
   const { refreshToken } = getCookiesUser();
   if (!refreshToken) {
     return false;
   }
   // Call API refresh token
   try {
-    authApi.refreshToken().then((res) => {
-      setCookiesUser(res.data);
-    });
+    const { data } = await authApi.refreshToken();
+    setCookiesUser(data);
+    return true;
   } catch (e) {
     return false;
   }
-  return true;
 };

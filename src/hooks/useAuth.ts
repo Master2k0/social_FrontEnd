@@ -1,21 +1,30 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { authApi } from "@/apis/auth";
-import { PUBLIC_ROUTE } from "@/router";
-import { checkIsAuth, removeCookiesUser } from "@/utils/auth";
+import useUserGetMe from "@/hooks/queries/users/user";
+import { requestRefreshToken } from "@/utils/auth";
 
 const useAuth = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(checkIsAuth());
-  const router = useRouter();
-  const logOut = async () => {
-    await authApi.logout();
-    setIsAuth(false);
-    removeCookiesUser();
-    router.push(PUBLIC_ROUTE.AUTH);
-  };
+  const [isAuth, setIsAuth] = useState<boolean>(true);
+  const { data, refetch, isLoading } = useUserGetMe();
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (!isLoading && !data) {
+        const isRefresh = await requestRefreshToken();
+        if (isRefresh) {
+          refetch();
+          setIsAuth(true);
+        } else {
+          setIsAuth(false);
+        }
+      } else {
+        setIsAuth(true);
+      }
+    };
 
-  return { isAuth, setIsAuth, logOut };
+    checkAuth();
+  }, [isLoading]);
+
+  return { isAuth, setIsAuth };
 };
 
 export default useAuth;

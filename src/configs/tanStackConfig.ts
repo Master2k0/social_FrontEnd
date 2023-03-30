@@ -16,13 +16,13 @@ const queryClient = new QueryClient({
 export default queryClient;
 
 export function onError(error: IResponseError) {
-  enqueueSnackbar(error.message, {
+  enqueueSnackbar(error?.message ?? "Something wrong", {
     variant: "error",
   });
 }
 
 export function onSuccess<T>(data: IResponse<T>) {
-  enqueueSnackbar(data.message, {
+  enqueueSnackbar(data?.message ?? "Something wrong", {
     variant: "success",
   });
 }
