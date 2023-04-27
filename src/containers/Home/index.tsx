@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material";
 
 import SwitchTheme from "@/components/SwitchTheme";
+import { CustomizedSlider } from "@/components/Test";
 import Header from "@/containers/Home/Header";
 import IconAvatar from "@/icons/Avatar";
 
@@ -22,6 +23,7 @@ export default function HomeContainer() {
       </div>
       <SwitchTheme />
       <Button>Logout</Button>
+      <CustomizedSlider />
       {/* <Button
         onClick={async () => {
           await logOut();

@@ -97,16 +97,22 @@ function SignIn() {
               type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {!showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
+                  // <InputAdornment>
+                  <IconButton
+                    className="absolute right-0 p-3"
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {!showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                  // </InputAdornment>
                 ),
+              }}
+              sx={{
+                "& .MuiInputBase-input": {
+                  paddingRight: "55px",
+                },
               }}
             />
 

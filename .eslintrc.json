@@ -43,7 +43,8 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/prefer-nullish-coalescing": "warn"
+    "@typescript-eslint/prefer-nullish-coalescing": "warn",
+    "react/jsx-no-duplicate-props": "off"
   },
   "settings": {
     "import/parsers": {

@@ -10,7 +10,7 @@ import { createContext, useMemo } from "react";
 
 import ToastCustom from "@/components/ToastCustom";
 import queryClient from "@/configs/tanStackConfig";
-import customTheme from "@/constants/theme";
+import customTheme, { readexPro } from "@/constants/theme";
 import { useGetLocalStorage } from "@/hooks/useGetLocalStorage";
 
 export const ColorModeContext = createContext({
@@ -32,29 +32,31 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const theme = useMemo(customTheme(mode), [mode]);
   return (
-    <GoogleOAuthProvider
-      clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}
-    >
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <ColorModeContext.Provider value={colorMode}>
-          <ThemeProvider theme={theme}>
-            <SnackbarProvider
-              maxSnack={5}
-              autoHideDuration={2000}
-              Components={{
-                success: ToastCustom,
-                error: ToastCustom,
-                warning: ToastCustom,
-                info: ToastCustom,
-                default: ToastCustom,
-              }}
-            >
-              <Component {...pageProps} />
-            </SnackbarProvider>
-          </ThemeProvider>
-        </ColorModeContext.Provider>
-      </QueryClientProvider>
-    </GoogleOAuthProvider>
+    <main className={`${readexPro.variable} font-readexPro`}>
+      <GoogleOAuthProvider
+        clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}
+      >
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
+          <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+              <SnackbarProvider
+                maxSnack={5}
+                autoHideDuration={2000}
+                Components={{
+                  success: ToastCustom,
+                  error: ToastCustom,
+                  warning: ToastCustom,
+                  info: ToastCustom,
+                  default: ToastCustom,
+                }}
+              >
+                <Component {...pageProps} />
+              </SnackbarProvider>
+            </ThemeProvider>
+          </ColorModeContext.Provider>
+        </QueryClientProvider>
+      </GoogleOAuthProvider>
+    </main>
   );
 }
