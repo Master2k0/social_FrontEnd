@@ -44,9 +44,19 @@ function ListNotification(props: IProps) {
         vertical: "top",
         horizontal: "right",
       }}
+      PaperProps={{
+        style: {
+          maxHeight: "90vh",
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
+        },
+      }}
       sx={{
         "& .MuiPaper-root": {
           maxWidth: 500,
+        },
+        "& .MuiPaper-root::-webkit-scrollbar": {
+          display: "none",
         },
       }}
     >
