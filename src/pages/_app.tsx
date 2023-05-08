@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const theme = useMemo(customTheme(mode), [mode]);
   return (
-    <main className={`${readexPro.variable} font-readexPro`}>
+    <main className={`${readexPro.variable} font-readexPro bg-gray-100`}>
       <GoogleOAuthProvider
         clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}
       >
