@@ -1,8 +1,9 @@
 import { Box, Button } from "@mui/material";
 
+import Header from "@/components/Header";
+import MenuBar from "@/components/MenuBar";
 import SwitchTheme from "@/components/SwitchTheme";
 import { CustomizedSlider } from "@/components/Test";
-import Header from "@/containers/Home/Header";
 import IconAvatar from "@/icons/Avatar";
 
 export default function HomeContainer() {
@@ -16,7 +17,7 @@ export default function HomeContainer() {
     //
     //   </div>
     // </div>
-    <Box>
+    <Box className="bg-light-200 dark:bg-darkDark-200 min-h-[100vh]">
       <Header />
       <div className="w-40 h-40">
         <IconAvatar />
@@ -24,6 +25,9 @@ export default function HomeContainer() {
       <SwitchTheme />
       <Button>Logout</Button>
       <CustomizedSlider />
+
+      <MenuBar />
+
       {/* <Button
         onClick={async () => {
           await logOut();
