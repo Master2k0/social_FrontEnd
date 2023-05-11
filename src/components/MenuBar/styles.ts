@@ -14,13 +14,16 @@ export const Above = styled(Stack)`
   ${tw`p-2.5 rounded-lg`}
 `;
 
-export const Under = styled("div")<{ isShow?: boolean }>`
+export const Under = styled("div", {
+  shouldForwardProp: (prop) => prop !== "isShow",
+})<{ isShow?: boolean }>`
   ${tw`dark:bg-darkDark-900/5 bg-light-900/5`}
   ${tw`shadow-[-1px 1px 10px] shadow-light-900/10 dark:shadow-darkDark-900/10`}
   ${tw`backdrop-blur-sm transition-all ease-in-out duration-300 `}
+  ${tw`w-[400px] h-[500px]`}
   ${(props) =>
     props.isShow
-      ? tw`max-w-[400px] max-h-[500px] mt-10`
+      ? tw`max-w-[400px] max-h-[500px]  mt-10`
       : tw`max-w-0 max-h-0 overflow-hidden`}
 `;
 
