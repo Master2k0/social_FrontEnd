@@ -10,7 +10,7 @@ interface IProps {
 function FormMessage(props: IProps) {
   const { setOpenMessage } = props;
   return (
-    <Box className="w-full h-full ">
+    <Box className="w-full h-full flex flex-col">
       <Info setOpenMessage={setOpenMessage} />
       <Divider />
       <ContentMessage />

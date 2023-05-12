@@ -1,4 +1,5 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+import { useEffect, useRef } from "react";
 
 import Header from "@/components/Header";
 import MenuBar from "@/components/MenuBar";
@@ -8,7 +9,13 @@ import IconAvatar from "@/icons/Avatar";
 
 export default function HomeContainer() {
   // const { logOut } = useAuth();
+  // const refInput = useRef<HTMLInputElement>(null);
 
+  // useEffect(() => {
+  //   if (!refInput.current) return;
+  //   refInput.current?.focus();
+  //   refInput.current?.setSelectionRange(0, 3);
+  // }, []);
   return (
     // <div>
     //   <div>
@@ -27,7 +34,7 @@ export default function HomeContainer() {
       <CustomizedSlider />
 
       <MenuBar />
-
+      {/* <TextField value="something" inputRef={refInput} /> */}
       {/* <Button
         onClick={async () => {
           await logOut();
