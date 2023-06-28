@@ -44,7 +44,10 @@
     "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "warn",
-    "react/jsx-no-duplicate-props": "off"
+    "react/jsx-no-duplicate-props": "off",
+    "react/no-array-index-key": "off",
+    "react/require-default-props": "off",
+    "react/display-name": "off"
   },
   "settings": {
     "import/parsers": {

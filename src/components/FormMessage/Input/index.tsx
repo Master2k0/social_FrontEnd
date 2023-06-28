@@ -1,10 +1,9 @@
-import data from "@emoji-mart/data";
-import Picker from "@emoji-mart/react";
 import SendIcon from "@mui/icons-material/Send";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import { Box, IconButton, Input as InputMui, Stack } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
+import EmojiContainer from "@/components/Emoji";
 import useOnClickOutside from "@/hooks/useClickOutside";
 import useSelectionStartInput from "@/hooks/useSelectionStartInput";
 import findEmojiInText from "@/utils/findEmojiInText";
@@ -69,13 +68,14 @@ function Input() {
       <Box ref={EmojiRef}>
         {showEmojis && (
           <Box className="absolute bottom-full left-0">
-            <Picker
+            {/* <Picker
               data={data}
               previewPosition="none"
               onEmojiSelect={(icon: any) => {
                 handleSelectEmoji(icon.native);
               }}
-            />
+            /> */}
+            <EmojiContainer handleSelect={handleSelectEmoji} />
           </Box>
         )}
         <IconButton

@@ -8,7 +8,7 @@ import Right from "@/components/Header/Right";
 import Search from "./Search";
 
 const Wrapper = styled(Box)`
-  ${tw`px-5 sticky max-h-20 h-20 top-0 left-0 right-0 w-auto bg-white dark:bg-darkDark-400`}
+  ${tw`px-5 z-50 sticky max-h-20 h-20 top-0 left-0 right-0 w-auto bg-white dark:bg-darkDark-400`}
 `;
 
 const Container = styled(Box)`

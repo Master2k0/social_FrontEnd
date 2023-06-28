@@ -10,6 +10,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
     extend: {
       fontFamily: {
@@ -547,6 +548,7 @@ module.exports = {
   ],
   corePlugins: {
     preflight: false,
+    divideStyle: true,
   },
   darkMode: "class",
 };
