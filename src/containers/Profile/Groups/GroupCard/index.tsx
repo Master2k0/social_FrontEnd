@@ -1,3 +1,4 @@
+import LockIcon from "@mui/icons-material/Lock";
 import {
   Avatar,
   Box,
@@ -39,6 +40,9 @@ const GroupCard = forwardRef<HTMLDivElement, IPropsGroupCard>(
               sx={{ width: 130, height: 130 }}
               className="absolute z-10 left-1/2 transform -translate-x-1/2 -top-[30%]"
             />
+            <Box className="absolute top-2 right-2 p-2 bg-white shadow-xl rounded-md">
+              <LockIcon color="info" />
+            </Box>
             <Box className="pt-[70px] flex flex-col gap-4">
               <Typography className="text-center">{info.name}</Typography>
               <Box className=" flex justify-between items-center gap-2">
@@ -73,6 +77,9 @@ const GroupCard = forwardRef<HTMLDivElement, IPropsGroupCard>(
           <CardContent className="flex flex-col md:flex-row gap-4 pl-10 items-center justify-between w-full px-10 ">
             <Typography className="text-center">{info.name}</Typography>
             <Box className=" flex justify-between items-center gap-2">
+              <Box className=" p-2 bg-white shadow-xl rounded-md">
+                <LockIcon color="info" />
+              </Box>
               <Button
                 className="flex-auto py-2 bg-primary-400 text-white shadow-md shadow-primary-400"
                 variant="contained"

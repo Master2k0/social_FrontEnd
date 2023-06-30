@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Friends from "@/containers/Profile/Friends";
 import GroupPage from "@/containers/Profile/Groups";
 import LayoutProfile from "@/containers/Profile/LayoutProfile";
+import Photos from "@/containers/Profile/Photos";
 
 import About from "./About";
 
@@ -15,7 +16,7 @@ function renderPage(page: string) {
     case "groups":
       return <GroupPage />;
     case "photos":
-      return <div>Photos</div>;
+      return <Photos />;
     case "videos":
       return <div>Videos</div>;
     default:
